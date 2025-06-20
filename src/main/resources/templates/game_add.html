@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>게임 추가</title>
+    <link rel="stylesheet" th:href="@{/css/base.css}" />
+    <link rel="stylesheet" th:href="@{/css/layout.css}" />
+    <link rel="stylesheet" th:href="@{/css/components.css}" />
+</head>
+<body>
+<div class="container">
+    <h2>게임 추가</h2>
+    <form th:action="@{/game/add}" method="post" enctype="multipart/form-data">
+        <label>게임명 (title)
+            <input type="text" name="title" required />
+        </label>
+        
+        <label>설명 (description)
+            <textarea name="description" required></textarea>
+        </label>
+        
+        <label>출시일 (releaseDate)
+            <input type="date" name="releaseDate" required />
+        </label>
+        
+        <label>개발사 (developer)
+            <input type="text" name="developer" required />
+        </label>
+        
+        <label>게임 이미지 (image)
+            <input type="file" name="image" accept="image/*" />
+        </label>
+        
+        <label>카테고리 (categories) - 여러 개 선택 가능</label>
+        <select name="categories" multiple size="4" required>
+            <option value="Action">Action</option>
+            <option value="RPG">RPG</option>
+            <option value="Strategy">Strategy</option>
+            <option value="Adventure">Adventure</option>
+            <option value="Sports">Sports</option>
+            <option value="Puzzle">Puzzle</option>
+        </select>
+        
+        <label>플랫폼 (platforms) - 여러 개 선택 가능</label>
+        <select name="platforms" multiple size="4" required>
+            <option value="PC">PC</option>
+            <option value="PlayStation">PlayStation</option>
+            <option value="Xbox">Xbox</option>
+            <option value="Nintendo">Nintendo</option>
+            <option value="Mobile">Mobile</option>
+        </select>
+        
+        <label>국가 (country)
+            <input type="text" name="country" required />
+        </label>
+        
+        <label>태그 (tags) - 쉼표로 구분해서 입력</label>
+        <input type="text" name="tags" placeholder="예: 멀티플레이,인디,무료" />
+        
+        <button type="submit">추가하기</button>
+    </form>
+    <div class="back-link">
+        <p><a th:href="@{/board}">게시판으로 돌아가기</a></p>
+    </div>
+</div>
+</body>
+</html>

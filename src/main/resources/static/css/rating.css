@@ -1,0 +1,35 @@
+/* rating.css */
+.rating-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+    justify-content: center;
+}
+
+.rating-options label {
+    background-color: #3a3a3a;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: border-color 0.3s;
+    user-select: none;
+    font-weight: bold;
+    color: #ccc;
+}
+
+.rating-options input[type="radio"] {
+    display: none;
+}
+
+.rating-options input[type="radio"]:checked + label {
+    border-color: #0EB4FC;
+    color: white;
+    background-color: #0a9bd9;
+}
+
+.rating-options label:hover {
+    border-color: #0EB4FC;
+    color: white;
+}

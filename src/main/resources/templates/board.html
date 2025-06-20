@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>리뷰 게시판</title>
+    <link rel="stylesheet" th:href="@{/css/base.css}" />
+    <link rel="stylesheet" th:href="@{/css/layout.css}" />
+    <link rel="stylesheet" th:href="@{/css/components.css}" />
+</head>
+<body>
+<header>
+    <h1>리뷰 게시판</h1>
+</header>
+<div class="board-container">
+    <table>
+        <thead>
+            <tr>
+                <th>번호</th>
+                <th>리뷰 내용</th>
+                <th>작성자</th>
+                <th>평가 점수</th>
+                <th>작성일</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- 서버에서 동적으로 리뷰 목록을 채움 -->
+            <tr th:each="review, iterStat : ${reviews}">
+                <td th:text="${iterStat.index + 1}">1</td>
+                <td th:text="${review.comment}">리뷰 내용</td>
+                <td th:text="${review.userId}">작성자ID</td>
+                <td>
+                    <span class="rating" th:text="${review.rating}">4.5</span>
+                </td>
+                <td th:text="${review.createdAt}">2025-06-21</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="actions">
+        <a href="/review/add" class="btn">리뷰 작성</a>
+    </div>
+</div>
+</body>
+</html>
