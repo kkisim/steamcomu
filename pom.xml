@@ -58,6 +58,12 @@
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+    <groupId>net.bytebuddy</groupId>
+    <artifactId>byte-buddy</artifactId>
+    <version>1.14.7</version> <!-- 또는 최신 버전 -->
+</dependency>
+
 	</dependencies>
 
 	<build>
