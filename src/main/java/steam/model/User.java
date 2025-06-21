@@ -19,8 +19,9 @@ public class User {
     @Field("email")
     private String email;
 
-    @Field("password")
+    @Field("password") 
     private String password;
+
 
     @Field("createdAt")
     private String createdAt;
