@@ -27,9 +27,14 @@ public class ReviewController {
     @GetMapping("/review/add")
     public String showReviewForm(Model model) {
         List<Game> games = gameRepository.findAll();
+        System.out.println("게임 수: " + games.size()); // ★ 로그 확인용
+        for (Game g : games) {
+            System.out.println("게임 제목: " + g.getTitle() + " / ID: " + g.getId());
+        }
         model.addAttribute("games", games);
         return "review_add";
     }
+
 
     // 리뷰 작성 처리
     @PostMapping("/review/add")

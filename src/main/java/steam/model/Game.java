@@ -1,5 +1,6 @@
 package steam.model;
 
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -10,7 +11,7 @@ import java.util.List;
 public class Game {
 
     @Id
-    private String id;
+    private ObjectId id;
 
     @Field("title")
     private String title;
@@ -60,12 +61,20 @@ public class Game {
     }
 
     // Getter & Setter
-    public String getId() {
+    public ObjectId getIdObject() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(ObjectId id) {
         this.id = id;
+    }
+
+    public String getId() {
+        return id != null ? id.toHexString() : null;
+    }
+
+    public void setId(String idStr) {
+        this.id = new ObjectId(idStr);
     }
 
     public String getTitle() {
@@ -147,5 +156,4 @@ public class Game {
     public void setCreatedAt(String createdAt) {
         this.createdAt = createdAt;
     }
-
 }

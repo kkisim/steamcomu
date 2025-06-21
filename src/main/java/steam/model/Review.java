@@ -1,5 +1,6 @@
 package steam.model;
 
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -10,17 +11,16 @@ public class Review {
     private String id;
 
     private String userId;
-    private String gameId;
+    private ObjectId gameId; // 🔄 수정됨
     private String comment;
     private double rating;
     private String createdAt;
 
-    // 생성자
     public Review() {}
 
     public Review(String userId, String gameId, String comment, double rating, String createdAt) {
         this.userId = userId;
-        this.gameId = gameId;
+        this.gameId = new ObjectId(gameId); // 문자열 → ObjectId 변환
         this.comment = comment;
         this.rating = rating;
         this.createdAt = createdAt;
@@ -45,10 +45,18 @@ public class Review {
     }
 
     public String getGameId() {
+        return gameId != null ? gameId.toHexString() : null;
+    }
+
+    public void setGameId(String gameIdStr) {
+        this.gameId = new ObjectId(gameIdStr);
+    }
+
+    public ObjectId getGameIdObject() {
         return gameId;
     }
 
-    public void setGameId(String gameId) {
+    public void setGameId(ObjectId gameId) {
         this.gameId = gameId;
     }
 
