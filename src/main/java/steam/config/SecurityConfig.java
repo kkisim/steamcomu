@@ -7,7 +7,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import steam.service.CustomUserDetailsService;
 
 @Configuration
 public class SecurityConfig {
@@ -29,19 +28,18 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http, DaoAuthenticationProvider authenticationProvider) throws Exception {
         http
-            .authenticationProvider(authenticationProvider) 
+            .authenticationProvider(authenticationProvider)
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
-            	    .requestMatchers(HttpMethod.GET, "/game/add").permitAll()
-            	    .requestMatchers(HttpMethod.POST, "/game/add").permitAll()
-            	    .requestMatchers("/login", "/signup", "/css/**", "/js/**", "/error", "/game/list").permitAll()
-            	    .anyRequest().authenticated()
-            	)
-
+                .requestMatchers(HttpMethod.GET, "/game/add").permitAll()
+                .requestMatchers(HttpMethod.POST, "/game/add").permitAll()
+                .requestMatchers("/login", "/signup", "/css/**", "/js/**", "/error", "/game/list").permitAll()
+                .anyRequest().authenticated()
+            )
             .formLogin(form -> form
                 .loginPage("/login")
                 .loginProcessingUrl("/login")
-                .usernameParameter("userId") // HTML과 일치
+                .usernameParameter("userId")
                 .passwordParameter("password")
                 .defaultSuccessUrl("/board", true)
                 .permitAll()
@@ -53,5 +51,4 @@ public class SecurityConfig {
 
         return http.build();
     }
-
 }

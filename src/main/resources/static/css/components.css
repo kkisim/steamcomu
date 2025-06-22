@@ -34,6 +34,12 @@ button {
     cursor: pointer;
     font-weight: bold;
 }
+.button-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px; /* 버튼 사이 간격을 30px로 설정 */
+}
+
 
 button:hover {
     background-color: #0a9bd9;
