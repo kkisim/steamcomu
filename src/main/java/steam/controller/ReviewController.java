@@ -25,9 +25,10 @@ public class ReviewController {
 
     // 리뷰 작성 폼
     @GetMapping("/review/add")
-    public String showReviewForm(Model model) {
+    public String showReviewForm(@RequestParam(required = false) String selectedGameId, Model model) {
         List<Game> games = gameRepository.findAll();
         model.addAttribute("games", games);
+        model.addAttribute("selectedGameId", selectedGameId);
         return "review_add";  // templates/review_add.html
     }
 
