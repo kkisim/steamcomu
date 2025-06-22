@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>게임 목록</title>
+</head>
+<body>
+<h2>게임 목록</h2>
+<ul>
+    <li th:each="game : ${games}">
+        <p>🎮 <strong th:text="${game.title}">제목</strong></p>
+        <p>📝 설명: <span th:text="${game.description}">설명</span></p>
+        <p>🧑‍💻 개발사: <span th:text="${game.developer}">개발사</span></p>
+        <p>📅 출시일: <span th:text="${game.releaseDate}">출시일</span></p>
+        <p>🌍 국가: <span th:text="${game.country}">국가</span></p>
+        <hr/>
+    </li>
+</ul>
+<a th:href="@{/}">홈으로</a>
+</body>
+</html>

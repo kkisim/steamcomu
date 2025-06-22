@@ -14,19 +14,6 @@ public class LoginController {
         return "login"; // templates/login.html
     }
 
-//    @PostMapping("/login")
-//    public String processLogin(String userId, String password, HttpSession session, Model model) {
-//        // 실제 구현에서는 사용자 인증을 위해 DB 조회 필요
-//        // 예시: 아이디와 비밀번호가 "admin"일 때 로그인 성공 처리
-//        if ("admin".equals(userId) && "admin".equals(password)) {
-//            session.setAttribute("userId", userId); // 세션에 저장
-//            return "redirect:/board"; // 로그인 성공 후 게시판 이동
-//        } else {
-//            model.addAttribute("error", true); // 로그인 실패 시 메시지 출력용
-//            return "login";
-//        }
-//    }
-    
 
     @GetMapping("/logout")
     public String logout(HttpSession session) {

@@ -24,46 +24,67 @@ public class GameController {
 
     private static final String UPLOAD_DIR = "src/main/resources/static/uploads/";
 
-    @GetMapping("/game/add")
-    public String showAddGameForm() {
-        return "game_add";
+    @GetMapping("/game/list")
+    public String getGameList(Model model) {
+        System.out.println("📌 GameController: /game/list 요청 도착");
+        
+
+        List<Game> games = gameRepository.findAll();
+
+        System.out.println("📌 Mongo에서 불러온 게임 개수: " + games.size());
+        System.out.println("🔥 저장된 게임들: ");
+        games.forEach(game -> System.out.println("▶ " + game.getTitle()));
+
+
+        model.addAttribute("games", games);
+        return "game_list";
     }
+
 
     @PostMapping("/game/add")
     public String addGame(@RequestParam String title,
                           @RequestParam String description,
                           @RequestParam String releaseDate,
                           @RequestParam String developer,
-                          @RequestParam("image") MultipartFile imageFile,
+                          @RequestParam("image") MultipartFile imageFile, // 수정!
                           @RequestParam List<String> categories,
                           @RequestParam List<String> platforms,
                           @RequestParam String country,
                           @RequestParam String tags,
                           Model model) {
 
-        // 이미지 저장 경로 설정
-        String imageName = imageFile.getOriginalFilename();
+        // 이미지 저장 디렉토리 설정
         String uploadDir = "src/main/resources/static/uploads/";
-        String imagePath = "/uploads/" + imageName;
+        String fileName = imageFile.getOriginalFilename();
+        String imagePath = "/uploads/" + fileName;
 
         try {
-            File saveFile = new File(uploadDir + imageName);
-            imageFile.transferTo(saveFile); // 실제 저장
+            File dir = new File(uploadDir);
+            if (!dir.exists()) dir.mkdirs(); // 디렉토리 없으면 생성
+            imageFile.transferTo(new File(uploadDir + fileName)); // 이미지 저장
         } catch (IOException e) {
             e.printStackTrace();
-            return "error"; // 에러 처리
+            return "error";
         }
 
-        // 태그 문자열을 리스트로 변환
+        // 전처리
+        title = title.trim().replaceAll("[,;]+$", "");
+        description = description.trim();
+        developer = developer.trim().replaceAll("[,;]+$", "");
+        country = country.trim();
         List<String> tagList = Arrays.asList(tags.split("\\s*,\\s*"));
-        String createdAt = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        String createdAt = LocalDateTime.now().toString(); // ISO-8601 형식
 
+
+        // 객체 생성 및 저장
         Game newGame = new Game(title, description, releaseDate, developer, imagePath,
-                                categories, platforms, country, tagList, createdAt);
-
+                categories, platforms, country, tagList, createdAt);
         gameRepository.save(newGame);
+
         return "redirect:/board";
     }
+
+
 
 
        
