@@ -33,14 +33,7 @@ public class SecurityConfig {
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers(HttpMethod.GET, "/game/add").permitAll()
                 .requestMatchers(HttpMethod.POST, "/game/add").permitAll()
-<<<<<<< HEAD
-                .requestMatchers("/", "/login", "/signup", "/css/**", "/js/**", "/images/**", "/error", "/game/list").permitAll() // ✅ 수정됨
-=======
-                .requestMatchers("/login", "/signup", "/css/**", "/js/**", "/error",
-                        "/game/list", "/game/add",
-                        "/find-id", "/find-password").permitAll()
-
->>>>>>> 4961c44c309be2cd2023587aa913aef428e8a939
+                .requestMatchers("/", "/login", "/signup", "/css/**", "/js/**", "/images/**", "/error", "/game/list").permitAll()
                 .anyRequest().authenticated()
             )
             .formLogin(form -> form

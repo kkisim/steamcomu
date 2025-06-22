@@ -80,7 +80,7 @@ public class GameController {
 
         gameRepository.save(newGame);
 
-        return "redirect:/game_list";
+        return "redirect:/game/list";
     }
 
     @GetMapping("/game/debug")
