@@ -1,21 +1,116 @@
-
+/* 공통 기본 스타일 (base.css, components.css에서 이어짐) */
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+  background-color: #1e1e1e;
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  color: #fff;
+}
+
+/* 로그인 페이지 전용 스타일 */
+body.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
 .login-container {
-    width: 350px;
-    padding: 40px 30px;
-    border-radius: 12px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-    background-color: #2c2c2c;
+  width: 350px;
+  padding: 40px 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  background-color: #2c2c2c;
 }
+
 .logo-image {
-    width: 250px;      /* 가로 크기 조절 */
-    height: auto;      /* 비율 유지 */
-    margin-bottom: 50px;
-    display: block;    /* 블록 요소로 만들어 정렬에 도움 */
+  width: 250px;      /* 가로 크기 조절 */
+  height: auto;      /* 비율 유지 */
+  margin-bottom: 50px;
+  display: block;
+}
+
+/* 게임 목록 페이지 전용 스타일 */
+body.game-list-page {
+  background-color: #1e1e1e;
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  color: #fff;
+}
+
+.game-list-container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 0 20px;
+  background-color: #2c2c2c;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(14, 180, 252, 0.3);
+  color: #ddd;
+  min-height: auto;
+}
+
+.game-list-container h2 {
+  margin-bottom: 30px;
+  color: #0EB4FC;
+  text-align: center;
+}
+
+.game-list-container ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.game-list-container li {
+  background-color: #3a3a3a;
+  border-radius: 8px;
+  padding: 15px 20px;
+  margin-bottom: 15px;
+  box-shadow: 0 0 10px rgba(14, 180, 252, 0.3);
+}
+
+.game-list-container li p {
+  margin: 5px 0;
+  font-size: 1rem;
+  color: #ddd;
+}
+
+.game-list-container li a {
+  color: #0EB4FC;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.game-list-container li a:hover {
+  text-decoration: underline;
+}
+
+.game-list-container .main-button {
+  display: block;
+  width: 200px;
+  margin: 30px auto 0;
+  padding: 12px 0;
+  border-radius: 30px;
+  background-color: #0EB4FC;
+  font-weight: bold;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  color: white;
+}
+
+.game-list-container .main-button:hover {
+  background-color: #0a9bd9;
+}
+
+.game-list-container a.home-link {
+  display: block;
+  margin-top: 25px;
+  text-align: center;
+  color: #0EB4FC;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.game-list-container a.home-link:hover {
+  text-decoration: underline;
 }

@@ -44,7 +44,7 @@ public class SecurityConfig {
                 .loginProcessingUrl("/login")
                 .usernameParameter("userId")
                 .passwordParameter("password")
-                .defaultSuccessUrl("/board", true)
+                .defaultSuccessUrl("/game_list", true)
                 .permitAll()
             )
             .logout(logout -> logout

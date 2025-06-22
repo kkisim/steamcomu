@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
-import java.util.UUID;
+import java.util.UUID;  // 추가
 
 @Controller
 public class GameController {
@@ -23,7 +23,7 @@ public class GameController {
 
     private static final String UPLOAD_DIR = System.getProperty("user.dir") + "/src/main/resources/static/uploads/";
 
-    @GetMapping("/game/list")
+    @GetMapping("/game_list")
     public String getGameList(Model model) {
         System.out.println("📌 GameController: /game/list 요청 도착");
 
@@ -33,15 +33,13 @@ public class GameController {
         games.forEach(game -> System.out.println("▶ " + game.getTitle()));
 
         model.addAttribute("games", games);
-        return "game_list";
+        return "game_list";  // templates/game_list.html
     }
 
     @GetMapping("/game/add")
     public String showAddGameForm() {
         return "game_add";
     }
-
-    
 
     @PostMapping("/game/add")
     public String addGame(@RequestParam String title,
@@ -82,11 +80,9 @@ public class GameController {
 
         gameRepository.save(newGame);
 
-        return "redirect:/game/list";
+        return "redirect:/game_list";
     }
 
-
-    // ✅ 디버그용 API — JSON으로 전체 게임 반환
     @GetMapping("/game/debug")
     @ResponseBody
     public List<Game> getAllGamesJson() {

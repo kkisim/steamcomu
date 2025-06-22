@@ -23,7 +23,6 @@
             </tr>
         </thead>
         <tbody>
-            <!-- 서버에서 동적으로 리뷰 목록을 채움 -->
             <tr th:each="review, iterStat : ${reviews}">
                 <td th:text="${iterStat.index + 1}">1</td>
                 <td th:text="${review.comment}">리뷰 내용</td>

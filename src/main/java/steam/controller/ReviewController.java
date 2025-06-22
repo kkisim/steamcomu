@@ -27,21 +27,16 @@ public class ReviewController {
     @GetMapping("/review/add")
     public String showReviewForm(Model model) {
         List<Game> games = gameRepository.findAll();
-        System.out.println("게임 수: " + games.size()); // ★ 로그 확인용
-        for (Game g : games) {
-            System.out.println("게임 제목: " + g.getTitle() + " / ID: " + g.getId());
-        }
         model.addAttribute("games", games);
-        return "review_add";
+        return "review_add";  // templates/review_add.html
     }
-
 
     // 리뷰 작성 처리
     @PostMapping("/review/add")
     public String submitReview(@RequestParam String userId,
-                                @RequestParam String gameId,
-                                @RequestParam String comment,
-                                @RequestParam double rating) {
+                               @RequestParam String gameId,
+                               @RequestParam String comment,
+                               @RequestParam double rating) {
 
         String createdAt = LocalDateTime.now()
             .format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
@@ -49,6 +44,6 @@ public class ReviewController {
         Review review = new Review(userId, gameId, comment, rating, createdAt);
         reviewRepository.save(review);
 
-        return "redirect:/board";
+        return "redirect:/board/" + gameId;
     }
 }
