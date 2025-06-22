@@ -39,7 +39,7 @@ public class SecurityConfig {
                 .loginProcessingUrl("/login")
                 .usernameParameter("userId") // HTML과 일치
                 .passwordParameter("password")
-                .defaultSuccessUrl("/board", true)
+                .defaultSuccessUrl("/game_list", true)
                 .permitAll()
             )
             .logout(logout -> logout

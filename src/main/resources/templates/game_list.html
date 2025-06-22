@@ -1,13 +1,22 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="UTF-8" />
     <title>게임 목록</title>
+    <link rel="stylesheet" th:href="@{/css/base.css}" />
+    <link rel="stylesheet" th:href="@{/css/components.css}" />
+    <link rel="stylesheet" th:href="@{/css/layout.css}" />
 </head>
 <body>
 <h2>게임 목록</h2>
+
 <ul>
     <li th:each="game : ${games}">
-        <p>🎮 <strong th:text="${game.title}">제목</strong></p>
+        <p>🎮
+            <strong>
+                <a th:href="@{'/board/' + ${game.id}}" th:text="${game.title}">게임 제목</a>
+            </strong>
+        </p>
         <p>📝 설명: <span th:text="${game.description}">설명</span></p>
         <p>🧑‍💻 개발사: <span th:text="${game.developer}">개발사</span></p>
         <p>📅 출시일: <span th:text="${game.releaseDate}">출시일</span></p>
@@ -15,6 +24,9 @@
         <hr/>
     </li>
 </ul>
+
+<button class="main-button" onclick="location.href='/game_add'">게임 추가</button>
+
 <a th:href="@{/}">홈으로</a>
 </body>
 </html>
