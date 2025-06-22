@@ -1,6 +1,7 @@
 package steam.config;
 
 import org.springframework.context.annotation.*;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.*;
@@ -31,10 +32,12 @@ public class SecurityConfig {
             .authenticationProvider(authenticationProvider) 
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
-        		.requestMatchers("/login", "/signup", "/css/**", "/js/**", "/error").permitAll()
+            	    .requestMatchers(HttpMethod.GET, "/game/add").permitAll()
+            	    .requestMatchers(HttpMethod.POST, "/game/add").permitAll()
+            	    .requestMatchers("/login", "/signup", "/css/**", "/js/**", "/error", "/game/list").permitAll()
+            	    .anyRequest().authenticated()
+            	)
 
-                .anyRequest().authenticated()
-            )
             .formLogin(form -> form
                 .loginPage("/login")
                 .loginProcessingUrl("/login")
