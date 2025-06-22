@@ -6,31 +6,36 @@
     <link rel="stylesheet" th:href="@{/css/base.css}" />
     <link rel="stylesheet" th:href="@{/css/components.css}" />
     <link rel="stylesheet" th:href="@{/css/layout.css}" />
+    <link rel="stylesheet" th:href="@{/css/game_list.css}" />
 </head>
 <body class="game-list-page">
-  <div class="container game-list-container" style="max-width: 700px; margin: 40px auto; padding: 20px;">
-    <h2 style="text-align: center; color: #0EB4FC; margin-bottom: 30px;">게임 목록</h2>
+  <div class="container game-list-container">
+    <h2 class="game-list-title">게임 목록</h2>
 
-    <ul>
-        <li th:each="game : ${games}" style="background-color:#3a3a3a; border-radius:8px; padding: 15px 20px; margin-bottom: 15px; box-shadow: 0 0 10px rgba(14, 180, 252, 0.3); color: #ddd;">
-            <p>🎮
-                <strong>
-                    <a th:href="@{'/board/' + ${game.id}}" th:text="${game.title}" style="color:#0EB4FC; text-decoration:none; font-weight: 600;">게임 제목</a>
-                </strong>
-            </p>
-            <p>📝 설명: <span th:text="${game.description}">설명</span></p>
-            <p>🧑‍💻 개발사: <span th:text="${game.developer}">개발사</span></p>
-            <p>📅 출시일: <span th:text="${game.releaseDate}">출시일</span></p>
-            <p>🌍 국가: <span th:text="${game.country}">국가</span></p>
-            <hr style="border-color: rgba(14, 180, 252, 0.3);" />
-        </li>
-    </ul>
+	<ul class="game-list">
+	    <li th:each="game : ${games}">
+	        <img th:src="@{'/images/' + ${game.title} + '.jpg'}" 
+	             onerror="this.onerror=null;this.src='/images/no_image.jpg';" 
+	             alt="게임 이미지" class="game-image" />
+	        <div class="game-details">
+	            <p>🎮
+	                <strong>
+	                    <a th:href="@{'/board/' + ${game.id}}" th:text="${game.title}">게임 제목</a>
+	                </strong>
+	            </p>
+	            <p>📝 설명: <span th:text="${game.description}">설명</span></p>
+	            <p>🧑‍💻 개발사: <span th:text="${game.developer}">개발사</span></p>
+	            <p>📅 출시일: <span th:text="${game.releaseDate}">출시일</span></p>
+	            <p>🌍 국가: <span th:text="${game.country}">국가</span></p>
+	            <hr />
+	        </div>
+	    </li>
+	</ul>
 
-    <button class="main-button" style="width: 150px; margin: 30px auto 0; display: block;" onclick="location.href='/game/add'">게임 추가</button>
 
-    <a class="home-link" th:href="@{/}" style="display: block; margin-top: 25px; text-align: center; color: #0EB4FC; font-weight: 600; text-decoration: none;">
-      홈으로
-    </a>
+    <button class="main-button" onclick="location.href='/game/add'">게임 추가</button>
+
+    <a class="home-link" th:href="@{/}">홈으로</a>
   </div>
 </body>
 </html>
