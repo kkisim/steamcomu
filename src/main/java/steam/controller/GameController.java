@@ -23,7 +23,7 @@ public class GameController {
 
     private static final String UPLOAD_DIR = System.getProperty("user.dir") + "/src/main/resources/static/uploads/";
 
-    @GetMapping("/game_list")
+    @GetMapping("/game/list")
     public String getGameList(Model model) {
         System.out.println("📌 GameController: /game/list 요청 도착");
 

@@ -1,0 +1,42 @@
+/* first.css */
+
+/* first-page 스타일 */
+.first-page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+  min-height: 100vh;
+  background-color: #1e1e1e;
+  color: white;
+}
+
+.logo-image {
+  width: 250px;
+  height: auto;
+  margin-bottom: 50px;
+  display: block;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column; /* 세로 방향 */
+  gap: 16px; /* 버튼 사이 간격 */
+  margin-top: 20px;
+}
+
+.button-container .main-button {
+  background-color: #0EB4FC;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.1rem;
+  padding: 12px 24px;
+  transition: background-color 0.3s ease;
+}
+
+.button-container .main-button:hover {
+  background-color: #0a9bd9;
+}

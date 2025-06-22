@@ -1,0 +1,27 @@
+/* login.css */
+
+.signup-link {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.signup-link a.button-link {
+  background-color: #0EB4FC;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border: none;
+  display: inline-block;
+  text-align: center;
+}
+
+.signup-link a.button-link:hover {
+  background-color: #0a9bd9;
+}

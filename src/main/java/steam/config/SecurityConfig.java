@@ -33,7 +33,7 @@ public class SecurityConfig {
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers(HttpMethod.GET, "/game/add").permitAll()
                 .requestMatchers(HttpMethod.POST, "/game/add").permitAll()
-                .requestMatchers("/login", "/signup", "/css/**", "/js/**", "/error", "/game/list").permitAll()
+                .requestMatchers("/", "/login", "/signup", "/css/**", "/js/**", "/images/**", "/error", "/game/list").permitAll() // ✅ 수정됨
                 .anyRequest().authenticated()
             )
             .formLogin(form -> form
@@ -41,7 +41,7 @@ public class SecurityConfig {
                 .loginProcessingUrl("/login")
                 .usernameParameter("userId")
                 .passwordParameter("password")
-                .defaultSuccessUrl("/game_list", true)
+                .defaultSuccessUrl("/game/list", true)
                 .permitAll()
             )
             .logout(logout -> logout

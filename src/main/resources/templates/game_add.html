@@ -8,59 +8,70 @@
     <link rel="stylesheet" th:href="@{/css/components.css}" />
 </head>
 <body>
-<div class="container">
-    <h2>게임 추가</h2>
-    <form th:action="@{/game/add}" method="post" enctype="multipart/form-data">
-        <label>게임명 (title)
-            <input type="text" name="title" required />
+<div class="container" style="max-width: 600px; margin: 40px auto; padding: 20px;">
+    <h2 style="text-align: center; color: #0EB4FC; margin-bottom: 30px;">게임 추가</h2>
+    <form th:action="@{/game/add}" method="post" enctype="multipart/form-data" style="display: flex; flex-direction: column;">
+        <label style="margin-bottom: 15px;">
+            게임명 (title)
+            <input type="text" name="title" class="input-field" required />
         </label>
-        
-        <label>설명 (description)
-            <textarea name="description" required></textarea>
+
+        <label style="margin-bottom: 15px;">
+            설명 (description)
+            <textarea name="description" class="input-field" required></textarea>
         </label>
-        
-        <label>출시일 (releaseDate)
-            <input type="date" name="releaseDate" required />
+
+        <label style="margin-bottom: 15px;">
+            출시일 (releaseDate)
+            <input type="date" name="releaseDate" class="input-field" required />
         </label>
-        
-        <label>개발사 (developer)
-            <input type="text" name="developer" required />
+
+        <label style="margin-bottom: 15px;">
+            개발사 (developer)
+            <input type="text" name="developer" class="input-field" required />
         </label>
-        
-        <label>게임 이미지 (image)
-            <input type="file" name="image" accept="image/*" />
+
+        <label style="margin-bottom: 15px;">
+            게임 이미지 (image)
+            <input type="file" name="image" class="input-field" accept="image/*" />
         </label>
-        
-        <label>카테고리 (categories) - 여러 개 선택 가능</label>
-        <select name="categories[]" multiple size="4" required>
-            <option value="Action">Action</option>
-            <option value="RPG">RPG</option>
-            <option value="Strategy">Strategy</option>
-            <option value="Adventure">Adventure</option>
-            <option value="Sports">Sports</option>
-            <option value="Puzzle">Puzzle</option>
-        </select>
-        
-        <label>플랫폼 (platforms) - 여러 개 선택 가능</label>
-        <select name="platforms[]" multiple size="4" required>
-            <option value="PC">PC</option>
-            <option value="PlayStation">PlayStation</option>
-            <option value="Xbox">Xbox</option>
-            <option value="Nintendo">Nintendo</option>
-            <option value="Mobile">Mobile</option>
-        </select>
-        
-        <label>국가 (country)
-            <input type="text" name="country" required />
+
+        <fieldset style="margin-bottom: 15px; border-radius: 8px; padding: 10px; border: 1px solid #555;">
+            <legend style="color: #0EB4FC; font-weight: bold;">카테고리 (여러 개 선택 가능)</legend>
+            <label><input type="checkbox" name="categories" value="Action" /> Action</label><br>
+            <label><input type="checkbox" name="categories" value="RPG" /> RPG</label><br>
+            <label><input type="checkbox" name="categories" value="Strategy" /> Strategy</label><br>
+            <label><input type="checkbox" name="categories" value="Adventure" /> Adventure</label><br>
+            <label><input type="checkbox" name="categories" value="Sports" /> Sports</label><br>
+            <label><input type="checkbox" name="categories" value="Puzzle" /> Puzzle</label>
+        </fieldset>
+
+        <fieldset style="margin-bottom: 15px; border-radius: 8px; padding: 10px; border: 1px solid #555;">
+            <legend style="color: #0EB4FC; font-weight: bold;">플랫폼 (여러 개 선택 가능)</legend>
+            <label><input type="checkbox" name="platforms" value="PC" /> PC</label><br>
+            <label><input type="checkbox" name="platforms" value="PlayStation" /> PlayStation</label><br>
+            <label><input type="checkbox" name="platforms" value="Xbox" /> Xbox</label><br>
+            <label><input type="checkbox" name="platforms" value="Nintendo" /> Nintendo</label><br>
+            <label><input type="checkbox" name="platforms" value="Mobile" /> Mobile</label>
+        </fieldset>
+
+        <label style="margin-bottom: 15px;">
+            국가 (country)
+            <input type="text" name="country" class="input-field" required />
         </label>
-        
-        <label>태그 (tags) - 쉼표로 구분해서 입력</label>
-        <input type="text" name="tags" placeholder="예: 멀티플레이,인디,무료" />
-        
-        <button type="submit">추가하기</button>
+
+        <label style="margin-bottom: 20px;">
+            태그 (tags) - 쉼표로 구분해서 입력
+            <input type="text" name="tags" class="input-field" placeholder="예: 멀티플레이,인디,무료" />
+        </label>
+
+        <button type="submit" class="main-button" style="width: 100%; padding: 12px; font-weight: bold; font-size: 1.2rem;">
+            추가하기
+        </button>
     </form>
-    <div class="back-link">
-        <p><a th:href="@{/board}">게시판으로 돌아가기</a></p>
+
+    <div class="back-link" style="text-align: center; margin-top: 20px;">
+        <p><a th:href="@{/game/list}" style="color: #0EB4FC; font-weight: bold; text-decoration: none;">게임 목록으로 돌아가기</a></p>
     </div>
 </div>
 </body>

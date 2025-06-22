@@ -8,6 +8,6 @@ public class FirstController {
 
     @GetMapping("/")
     public String showFirstPage() {
-        return "first";  // src/main/resources/templates/first.html 렌더링
+        return "first"; // 처음 화면
     }
 }

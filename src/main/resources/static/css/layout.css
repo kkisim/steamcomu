@@ -1,79 +1,82 @@
-/* 공통 기본 스타일 (base.css, components.css에서 이어짐) */
-body {
-  background-color: #1e1e1e;
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  color: #fff;
-}
+/* layout.css */
 
-/* 로그인 페이지 전용 스타일 */
-body.login-page {
+/* 공통 기본 스타일 */
+body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
+  flex-direction: column;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
-.login-container {
+/* 로그인 페이지 전용 스타일 */
+body.login-page .login-container {
   width: 350px;
+  max-width: 100%;
   padding: 40px 30px;
   border-radius: 12px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
   background-color: #2c2c2c;
+  box-sizing: border-box;
 }
 
+/* 로고 이미지 스타일 */
 .logo-image {
-  width: 250px;      /* 가로 크기 조절 */
-  height: auto;      /* 비율 유지 */
+  width: 250px;
+  height: auto;
   margin-bottom: 50px;
   display: block;
 }
 
 /* 게임 목록 페이지 전용 스타일 */
-body.game-list-page {
-  background-color: #1e1e1e;
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  color: #fff;
-}
-
-.game-list-container {
-  max-width: 600px;
-  margin: 40px auto;
-  padding: 0 20px;
+body.game-list-page .game-list-container {
+  width: 600px;
+  max-width: 100%;
+  padding: 30px 20px;
   background-color: #2c2c2c;
   border-radius: 12px;
   box-shadow: 0 0 15px rgba(14, 180, 252, 0.3);
   color: #ddd;
-  min-height: auto;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
 }
 
+/* 게임 목록 제목 */
 .game-list-container h2 {
   margin-bottom: 30px;
   color: #0EB4FC;
   text-align: center;
 }
 
+/* 게임 목록 ul 스타일 */
 .game-list-container ul {
   list-style: none;
   padding: 0;
   margin: 0;
+  width: 100%;
 }
 
+/* 게임 목록 li 스타일 */
 .game-list-container li {
   background-color: #3a3a3a;
   border-radius: 8px;
   padding: 15px 20px;
   margin-bottom: 15px;
   box-shadow: 0 0 10px rgba(14, 180, 252, 0.3);
+  color: #ddd;
 }
 
+/* 게임 목록 li 안 텍스트 */
 .game-list-container li p {
   margin: 5px 0;
   font-size: 1rem;
   color: #ddd;
 }
 
+/* 게임 목록 li 안 링크 */
 .game-list-container li a {
   color: #0EB4FC;
   text-decoration: none;
@@ -84,15 +87,15 @@ body.game-list-page {
   text-decoration: underline;
 }
 
+/* 게임 목록 아래 메인 버튼 */
 .game-list-container .main-button {
-  display: block;
-  width: 200px;
+  width: 150px;
   margin: 30px auto 0;
-  padding: 12px 0;
-  border-radius: 30px;
+  padding: 10px 0;
+  border-radius: 20px;
   background-color: #0EB4FC;
   font-weight: bold;
-  font-size: 1.1rem;
+  font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
   color: white;
@@ -102,6 +105,7 @@ body.game-list-page {
   background-color: #0a9bd9;
 }
 
+/* 홈으로 가는 링크 */
 .game-list-container a.home-link {
   display: block;
   margin-top: 25px;
@@ -113,4 +117,108 @@ body.game-list-page {
 
 .game-list-container a.home-link:hover {
   text-decoration: underline;
+}
+
+/* 게임 추가 페이지, 리뷰 추가 페이지 등 form 스타일 */
+form {
+  width: 350px;
+  max-width: 100%;
+  padding: 30px 20px;
+  background-color: #2c2c2c;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  box-sizing: border-box;
+  color: #ddd;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* form 안 label 스타일 */
+form label {
+  margin-bottom: 15px;
+  color: #ddd;
+  font-weight: 500;
+}
+
+/* form 안 input, textarea 스타일 */
+form input[type="text"],
+form input[type="email"],
+form input[type="date"],
+form input[type="file"],
+form input[type="password"],
+form select,
+form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #555;
+  border-radius: 6px;
+  background-color: #3a3a3a;
+  color: #fff;
+  box-sizing: border-box;
+  font-size: 1rem;
+}
+
+
+/* form 안 버튼 스타일 */
+form button {
+  width: 100%;
+  padding: 12px;
+  background-color: #0EB4FC;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+}
+
+form button:hover {
+  background-color: #0a9bd9;
+}
+
+/* form 내 다중선택 select 크기 조절 */
+form select[multiple] {
+  height: auto;
+  min-height: 100px;
+}
+
+/* 기타 필요한 버튼 컨테이너 (예: 리뷰 작성 버튼 등) */
+.actions {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.actions a.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #0EB4FC;
+  color: white;
+  border-radius: 6px;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.actions a.btn:hover {
+  background-color: #0a9bd9;
+}
+
+/* container 스타일 - 스크롤 가능하도록 수정 */
+.container {
+  max-width: 600px;          /* 최대 너비 제한 */
+  max-height: 90vh;          /* 최대 높이 제한 */
+  margin: 0 auto;            /* 좌우 중앙 정렬 */
+  background-color: #2c2c2c; /* 배경색 */
+  padding: 30px 20px;        /* 안쪽 여백 */
+  border-radius: 12px;       /* 모서리 둥글게 */
+  box-sizing: border-box;    /* 패딩 포함 너비 계산 */
+  color: #ddd;               /* 글자 색상 */
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); /* 약간 그림자 */
+  
+  overflow-y: auto;          /* 세로 스크롤 활성화 */
 }

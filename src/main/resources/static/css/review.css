@@ -1,0 +1,48 @@
+/* review.css */
+
+/* 리뷰 게시판 테이블 스타일 */
+.review-table {
+  width: 90%;
+  max-width: 900px;
+  margin: 20px auto;
+  border-collapse: collapse;
+  background-color: #2c2c2c;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 15px rgba(14, 180, 252, 0.4);
+  color: #ddd;
+  font-size: 1rem;
+}
+
+.review-table thead {
+  background-color: #0EB4FC;
+  color: white;
+  text-align: center;
+}
+
+.review-table thead th {
+  padding: 15px 10px;
+  font-weight: 600;
+}
+
+.review-table tbody tr {
+  border-bottom: 1px solid #444;
+  transition: background-color 0.3s ease;
+}
+
+.review-table tbody tr:hover {
+  background-color: rgba(14, 180, 252, 0.1);
+}
+
+.review-table tbody td {
+  padding: 12px 10px;
+  text-align: center;
+  vertical-align: middle;
+  word-break: break-word;
+}
+
+/* 내용 칸은 좌측 정렬 및 넓이 조절 */
+.review-table tbody td:nth-child(3) {
+  text-align: left;
+  max-width: 400px;
+}
