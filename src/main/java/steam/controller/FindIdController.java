@@ -17,7 +17,7 @@ public class FindIdController {
 
     @GetMapping("/find-id")
     public String showFindIdForm() {
-        return "find-id"; // templates/find-id.html
+        return "find_id"; // templates/find-id.html
     }
 
     @PostMapping("/find-id")
@@ -31,6 +31,6 @@ public class FindIdController {
     	}
 
 
-        return "find-id";
+        return "find_id";
     }
 }
