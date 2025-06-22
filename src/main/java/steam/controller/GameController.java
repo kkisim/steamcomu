@@ -13,7 +13,6 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
-import java.util.UUID;  // 추가
 
 @Controller
 public class GameController {
@@ -57,16 +56,26 @@ public class GameController {
         if (!dir.exists()) dir.mkdirs();
 
         String imagePath;
+
         if (!imageFile.isEmpty()) {
             try {
                 String originalName = imageFile.getOriginalFilename();
-                String ext = originalName.substring(originalName.lastIndexOf("."));
-                String uuidFileName = UUID.randomUUID().toString() + ext;
+                String ext = "";
 
-                String fullPath = UPLOAD_DIR + uuidFileName;
-                imagePath = "/uploads/" + uuidFileName;
+                if (originalName != null && originalName.contains(".")) {
+                    ext = originalName.substring(originalName.lastIndexOf("."));
+                }
 
+                // 게임 제목을 파일명으로 사용 (간단 정규화: 영문, 숫자, _만 허용)
+                String safeTitle = title.replaceAll("[^a-zA-Z0-9_]", "_");
+
+                String fileName = safeTitle + ext;
+
+                String fullPath = UPLOAD_DIR + fileName;
                 imageFile.transferTo(new File(fullPath));
+
+                imagePath = "/uploads/" + fileName;
+
             } catch (IOException e) {
                 e.printStackTrace();
                 return "error";
