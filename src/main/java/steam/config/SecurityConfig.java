@@ -1,12 +1,12 @@
 package steam.config;
 
 import org.springframework.context.annotation.*;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import steam.service.CustomUserDetailsService;
 
 @Configuration
 public class SecurityConfig {
@@ -31,13 +31,15 @@ public class SecurityConfig {
             .authenticationProvider(authenticationProvider)
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/", "/login", "/signup", "/css/**", "/js/**", "/images/**", "/error").permitAll()
+                .requestMatchers(HttpMethod.GET, "/game/add").permitAll()
+                .requestMatchers(HttpMethod.POST, "/game/add").permitAll()
+                .requestMatchers("/login", "/signup", "/css/**", "/js/**", "/error", "/game/list").permitAll()
                 .anyRequest().authenticated()
             )
             .formLogin(form -> form
                 .loginPage("/login")
                 .loginProcessingUrl("/login")
-                .usernameParameter("userId") // HTML과 일치
+                .usernameParameter("userId")
                 .passwordParameter("password")
                 .defaultSuccessUrl("/game_list", true)
                 .permitAll()
