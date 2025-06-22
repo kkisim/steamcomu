@@ -4,37 +4,35 @@
     <meta charset="UTF-8" />
     <title>게임 목록</title>
     <link rel="stylesheet" th:href="@{/css/base.css}" />
-    <link rel="stylesheet" th:href="@{/css/components.css}" />
-    <link rel="stylesheet" th:href="@{/css/layout.css}" />
     <link rel="stylesheet" th:href="@{/css/game_list.css}" />
 </head>
 <body class="game-list-page">
   <div class="container game-list-container">
     <h2 class="game-list-title">게임 목록</h2>
 
-	<ul class="game-list">
-	    <li th:each="game : ${games}">
-	        <img th:src="@{'/images/' + ${game.title} + '.jpg'}" 
-	             onerror="this.onerror=null;this.src='/images/no_image.jpg';" 
-	             alt="게임 이미지" class="game-image" />
-	        <div class="game-details">
-	            <p>🎮
-	                <strong>
-	                    <a th:href="@{'/board/' + ${game.id}}" th:text="${game.title}">게임 제목</a>
-	                </strong>
-	            </p>
-	            <p>📝 설명: <span th:text="${game.description}">설명</span></p>
-	            <p>🧑‍💻 개발사: <span th:text="${game.developer}">개발사</span></p>
-	            <p>📅 출시일: <span th:text="${game.releaseDate}">출시일</span></p>
-	            <p>🌍 국가: <span th:text="${game.country}">국가</span></p>
-	            <hr />
-	        </div>
-	    </li>
-	</ul>
+    <!-- 검색창: 수평 정렬 -->
+    <form th:action="@{/game/list}" method="get" class="search-form">
+        <input type="text" name="keyword" th:value="${keyword}" placeholder="게임 제목을 입력하세요" />
+        <button type="submit">검색</button>
+    </form>
 
+    <ul class="game-list">
+        <li th:each="game : ${games}">
+            <img th:src="@{'/images/' + ${game.title} + '.jpg'}"
+                 onerror="this.onerror=null;this.src='/images/no_image.jpg';"
+                 alt="게임 이미지" class="game-image" />
+            <div class="game-details">
+                <p>🎮 <strong><a th:href="@{'/board/' + ${game.id}}" th:text="${game.title}">게임 제목</a></strong></p>
+                <p>📝 설명: <span th:text="${game.description}">설명</span></p>
+                <p>🧑‍💻 개발사: <span th:text="${game.developer}">개발사</span></p>
+                <p>📅 출시일: <span th:text="${game.releaseDate}">출시일</span></p>
+                <p>🌍 국가: <span th:text="${game.country}">국가</span></p>
+                <hr />
+            </div>
+        </li>
+    </ul>
 
     <button class="main-button" onclick="location.href='/game/add'">게임 추가</button>
-
     <a class="home-link" th:href="@{/}">홈으로</a>
   </div>
 </body>

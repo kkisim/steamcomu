@@ -1,11 +1,10 @@
 package steam.repository;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
-import org.springframework.stereotype.Repository;
 import steam.model.Game;
-import org.bson.types.ObjectId;
 
-@Repository
-public interface GameRepository extends MongoRepository<Game, ObjectId> {
+import java.util.List;
+
+public interface GameRepository extends MongoRepository<Game, String> {
+    List<Game> findByTitleContainingIgnoreCase(String keyword); // 🔍 제목 검색용
 }
-
