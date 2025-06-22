@@ -33,7 +33,10 @@ public class SecurityConfig {
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers(HttpMethod.GET, "/game/add").permitAll()
                 .requestMatchers(HttpMethod.POST, "/game/add").permitAll()
-                .requestMatchers("/login", "/signup", "/css/**", "/js/**", "/error", "/game/list").permitAll()
+                .requestMatchers("/login", "/signup", "/css/**", "/js/**", "/error",
+                        "/game/list", "/game/add",
+                        "/find-id", "/find-password").permitAll()
+
                 .anyRequest().authenticated()
             )
             .formLogin(form -> form
