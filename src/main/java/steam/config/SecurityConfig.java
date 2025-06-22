@@ -28,11 +28,10 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http, DaoAuthenticationProvider authenticationProvider) throws Exception {
         http
-            .authenticationProvider(authenticationProvider) 
+            .authenticationProvider(authenticationProvider)
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
-        		.requestMatchers("/login", "/signup", "/css/**", "/js/**", "/error").permitAll()
-
+                .requestMatchers("/", "/login", "/signup", "/css/**", "/js/**", "/images/**", "/error").permitAll()
                 .anyRequest().authenticated()
             )
             .formLogin(form -> form
@@ -50,5 +49,4 @@ public class SecurityConfig {
 
         return http.build();
     }
-
 }
