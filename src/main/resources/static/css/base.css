@@ -1,13 +1,11 @@
-/* base.css */
-body {
+/* 공통 초기화 및 전체 페이지 스크롤 */
+html, body {
+  height: auto;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
   font-family: 'Segoe UI', sans-serif;
   background-color: #1e1e1e;
-  color: #fff;
-  margin: 0;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  overflow: hidden;
+  color: #ffffff;
+  box-sizing: border-box;
 }

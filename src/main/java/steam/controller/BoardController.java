@@ -11,6 +11,7 @@ import steam.model.Review;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;  // ★ 이 부분 꼭 추가
 
 @Controller
 public class BoardController {
@@ -25,31 +26,36 @@ public class BoardController {
             @RequestParam(required = false) String userId,
             Model model) {
 
-        ObjectId objId = new ObjectId(gameId);
+        ObjectId objId;
+        try {
+            objId = new ObjectId(gameId);
+        } catch (IllegalArgumentException e) {
+            model.addAttribute("errorMessage", "잘못된 게임 ID입니다.");
+            return "error"; // 에러 뷰 필요
+        }
+
         List<Review> reviews = reviewRepository.findByGameId(objId);
 
-        // 🔍 작성자 필터링
         if (userId != null && !userId.trim().isEmpty()) {
             String keyword = userId.trim().toLowerCase();
             reviews = reviews.stream()
                     .filter(r -> r.getUserId().toLowerCase().contains(keyword))
-                    .toList();
+                    .collect(Collectors.toList());  // ← 여기 수정됨
         }
 
-        // 📊 정렬 처리
         switch (sort) {
             case "ratingDesc" -> reviews.sort(Comparator.comparingDouble(Review::getRating).reversed());
             case "ratingAsc" -> reviews.sort(Comparator.comparingDouble(Review::getRating));
             case "user" -> reviews.sort(Comparator.comparing(Review::getUserId));
-            case "recent" -> reviews.sort(Comparator.comparing(Review::getCreatedAt).reversed());
             default -> reviews.sort(Comparator.comparing(Review::getCreatedAt).reversed());
         }
 
         model.addAttribute("reviews", reviews);
         model.addAttribute("gameId", gameId);
         model.addAttribute("sort", sort);
-        model.addAttribute("userId", userId); // 검색값 유지
+        model.addAttribute("userId", userId);
 
         return "board";
     }
+
 }
